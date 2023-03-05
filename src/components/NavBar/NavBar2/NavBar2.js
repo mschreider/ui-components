@@ -14,7 +14,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
-import '../../resources/less/NavBar/navbar1.less'
+import { NavLink } from './Styled/NavBarStyled';
+
 
 // Set to auto for full page width
 const drawerWidth = 'auto';
@@ -64,9 +65,9 @@ function NavBar2(props) {
                 </Typography>
                 <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                     {navItems.map((item) => (
-                        <Link key={item} to='/' sx={{ color: '#fff' }}>
+                        <NavLink key={item} to='/' sx={{ color: '#fff' }}>
                             {item}
-                        </Link>
+                        </NavLink>
                     ))}
                 </Box>
                 <IconButton

@@ -1,16 +1,10 @@
 
 import React, { useEffect } from 'react'
 import { Link, Outlet } from 'react-router-dom';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
+
 import '../App.css';
 import { Box, Button, CssBaseline } from '@mui/material';
-import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
-import IconButton from '@mui/material/IconButton';
-import Brightness3Icon from '@mui/icons-material/Brightness3';
-import LightModeIcon from '@mui/icons-material/LightMode';
+
 
 
 
@@ -32,9 +26,21 @@ function Root(props) {
 					</Link>
 					
 				</li>
+				<li>
+					<Link to='/nav3'>
+						NavBar 3
+					</Link>
+					
+				</li>
 			</ul>
 			<ul>
 				Hero Content
+				<li>
+					<Link to='/hero1'>
+						Hero 1
+					</Link>
+					
+				</li>
 			</ul>		
 		</Box>
 	)

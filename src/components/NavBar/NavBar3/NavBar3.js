@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import './NavBar3.less'
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,20 +14,18 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import '../../resources/less/NavBar/navbar1.less'
-
-// Set to auto for full page width
-const drawerWidth = 'auto';
-
-const navItems = ['Home', 'About', 'Contact'];
 
 /**
  * @description Transparent NavBar with absolute positioning, top down drawer, mobile responsive
  * @param {*} props 
  * @returns 
  */
-function NavBar2(props) {
+function NavBar3(props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  // Set to auto for full page width
+  const drawerWidth = 'auto';
+
+  const navItems = ['Home', 'About', 'Contact'];
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -53,7 +51,7 @@ function NavBar2(props) {
 
     
     return (
-        <Box >
+        <Box>
             <AppBar component="nav">
                 <Toolbar sx={{display: 'flex', justifyContent: 'space-between'}}>
                     <Typography
@@ -171,4 +169,4 @@ function NavBar2(props) {
 }
 
 
-export default NavBar2;
+export default NavBar3;

@@ -14,13 +14,13 @@ function ThemeController({ children }) {
         setTheme: (n) => setThemeState({ ...themeState, mode: n })
     });
 
-    let theme = createTheme(appTheme, {
+    let theme = createTheme({
         palette: {
           mode: themeState.mode,
         },
     })
 
-    theme = responsiveFontSizes(theme)
+    //theme = responsiveFontSizes(theme)
 
     return (
         <ThemeContext.Provider value={themeState} >

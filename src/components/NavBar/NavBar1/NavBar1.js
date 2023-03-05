@@ -15,22 +15,8 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Slide from '@mui/material/Slide';
-import '../../resources/less/NavBar/navbar1.less'
-import ThemeToggle from '../Theme/ThemeToggle';
-import { Link } from 'react-router-dom';
-import { styled, createTheme, ThemeProvider } from '@mui/system';
-
-
-const drawerWidth = 240;
-const navItems = ['Home', 'About', 'Contact'];
-
-const NavLink = styled(Link)(({ theme }) => ({
-  textDecoration: 'none',
-  color: theme.palette.primary.contrastText,
-  backgroundColor: theme.palette.primary.main,
-  padding: theme.spacing(1),
-  borderRadius: theme.shape.borderRadius,
-}));
+import ThemeToggle from '../../Theme/ThemeToggle';
+import { NavLink } from './Styled/NavBarStyled';
 
 function HideOnScroll(props) {
     const { children } = props;
@@ -43,9 +29,16 @@ function HideOnScroll(props) {
     );
 }
 
+/**
+ * @description NavBar with hide on scroll, left drawer, mobile responsive
+ * @param {*} props 
+ * @returns 
+ */
 function NavBar1(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const drawerWidth = 240;
+  const navItems = ['Home', 'About', 'Contact'];
 
   
   const handleDrawerToggle = () => {
@@ -99,7 +92,7 @@ function NavBar1(props) {
                         >
                             <MenuIcon />
                         </IconButton>
-                        <ThemeToggle />
+                        <ThemeToggle style={{position: 'absolute', top: '0'}} />
                     </Toolbar>
                 </AppBar>
             </HideOnScroll>
