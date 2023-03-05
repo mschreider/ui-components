@@ -13,7 +13,7 @@ import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
 import '../../resources/less/NavBar/navbar1.less'
 
 // Set to auto for full page width
@@ -64,9 +64,9 @@ function NavBar2(props) {
                 </Typography>
                 <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                     {navItems.map((item) => (
-                        <Button classNAme='menuButton' key={item} sx={{ color: '#fff' }}>
+                        <Link key={item} to='/' sx={{ color: '#fff' }}>
                             {item}
-                        </Button>
+                        </Link>
                     ))}
                 </Box>
                 <IconButton

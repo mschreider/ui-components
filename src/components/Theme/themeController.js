@@ -1,35 +1,34 @@
 import React from 'react'
-import SiteUtilities from '../../utilities/SiteUtilities'
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, useTheme, responsiveFontSizes } from '@mui/material/styles';
+import {CssBaseline} from '@mui/material'
+import { appTheme } from './config';
 
-/**
- * Setup
- *  Insert the code below onto the 
- */
-
-export const ThemeModeContext = React.createContext({
+export const ThemeContext = React.createContext({
     mode: '',
-    setThemeMode: () => {}
+    setTheme: () => {}
 });
 
-function ThemeController({children, ...props}) {
+function ThemeController({ children }) {
     const [themeState, setThemeState] = React.useState({
-        mode: SiteUtilities.getSiteTheme(),
-        setThemeMode: (n) => setThemeState({ ...themeState, mode: n })
+        mode: useTheme().palette.mode,
+        setTheme: (n) => setThemeState({ ...themeState, mode: n })
     });
 
-    let theme = createTheme({
+    let theme = createTheme(appTheme, {
         palette: {
           mode: themeState.mode,
         },
     })
 
+    theme = responsiveFontSizes(theme)
+
     return (
-        <ThemeModeContext.Provider value={themeState} >
+        <ThemeContext.Provider value={themeState} >
             <ThemeProvider theme={theme}>
+                <CssBaseline />
                 {children}
             </ThemeProvider>
-        </ThemeModeContext.Provider>
+        </ThemeContext.Provider>
     )
 }
 

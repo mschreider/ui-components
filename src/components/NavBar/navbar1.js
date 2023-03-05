@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -16,16 +15,22 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Slide from '@mui/material/Slide';
-import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
-import Brightness3Icon from '@mui/icons-material/Brightness3';
-import LightModeIcon from '@mui/icons-material/LightMode';
 import '../../resources/less/NavBar/navbar1.less'
-import { ThemeModeContext } from '../../App';
+import ThemeToggle from '../Theme/ThemeToggle';
+import { Link } from 'react-router-dom';
+import { styled, createTheme, ThemeProvider } from '@mui/system';
+
 
 const drawerWidth = 240;
 const navItems = ['Home', 'About', 'Contact'];
 
-
+const NavLink = styled(Link)(({ theme }) => ({
+  textDecoration: 'none',
+  color: theme.palette.primary.contrastText,
+  backgroundColor: theme.palette.primary.main,
+  padding: theme.spacing(1),
+  borderRadius: theme.shape.borderRadius,
+}));
 
 function HideOnScroll(props) {
     const { children } = props;
@@ -37,28 +42,16 @@ function HideOnScroll(props) {
       </Slide>
     );
 }
-  
 
 function NavBar1(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  const themeState = React.useContext(ThemeModeContext);
   
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
 
-  const toggleTheme = () => {
-    if (themeState.mode === 'dark') {
-      themeState.setThemeMode('light')
-
-    }
-    else {
-      themeState.setThemeMode('dark')
-
-    }
-  }
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Typography variant="h6" sx={{ my: 1 }}>
@@ -79,7 +72,6 @@ function NavBar1(props) {
 
     const container = window !== undefined ? () => window().document.body : undefined;
 
-    
     return (
         <Box >
           
@@ -87,16 +79,16 @@ function NavBar1(props) {
                 <AppBar component="nav">
                     <Toolbar sx={{display: 'flex', justifyContent: 'space-between'}}>
                         <Typography
-                            variant="h6"
+                            variant="h3"
                             component="div"
                         >
                             MUI
                         </Typography>
                         <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                             {navItems.map((item) => (
-                                <Button classNAme='menuButton' key={item} sx={{ color: '#fff' }}>
+                                <NavLink key={item} to='/' sx={{ color: '#fff' }}>
                                     {item}
-                                </Button>
+                                </NavLink>
                             ))}
                         </Box>
                         <IconButton
@@ -107,25 +99,7 @@ function NavBar1(props) {
                         >
                             <MenuIcon />
                         </IconButton>
-                        <Box
-                          sx={{
-                              display: 'flex',
-                              position: 'absolute',
-                              bottom: 0,
-                              width: '100%',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              bgcolor: 'background.default',
-                              color: 'text.primary',
-                              borderRadius: 1,
-                              p: 3,
-                          }}
-                        >
-                          {themeState.mode} mode
-                          <IconButton sx={{ ml: 1 }} onClick={toggleTheme} color="inherit">
-                              {themeState.mode === 'dark' ? <Brightness3Icon /> : <LightModeIcon />}
-                          </IconButton>
-                        </Box>
+                        <ThemeToggle />
                     </Toolbar>
                 </AppBar>
             </HideOnScroll>
@@ -150,7 +124,7 @@ function NavBar1(props) {
             <Box component="main" sx={{ p: 3 }}>
                 {/* Second Toolbar component is rendered to prevent content from being stuck behind navbar */}
                 <Toolbar /> 
-                <Typography >
+                <Typography variant='h6'>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique unde
                     fugit veniam eius, perspiciatis sunt? Corporis qui ducimus quibusdam,
                     aliquam dolore excepturi quae. Distinctio enim at eligendi perferendis in

@@ -1,20 +1,20 @@
 import React from 'react'
 import IconButton from '@mui/material/IconButton';
-import { ThemeModeContext } from '../../App';
+import { ThemeContext } from './ThemeController';
 import Brightness3Icon from '@mui/icons-material/Brightness3';
 import LightModeIcon from '@mui/icons-material/LightMode';
 
 function ThemeToggle() {
 
-    const themeState = React.useContext(ThemeModeContext);
+    const themeState = React.useContext(ThemeContext);
 
     const toggleTheme = () => {
         if (themeState.mode === 'dark') {
-          themeState.setThemeMode('light')
+          themeState.setTheme('light')
     
         }
         else {
-          themeState.setThemeMode('dark')
+          themeState.setTheme('dark')
     
         }
     }

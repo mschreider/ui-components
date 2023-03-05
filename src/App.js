@@ -11,53 +11,31 @@ import Brightness3Icon from '@mui/icons-material/Brightness3';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import { Box, Button, CssBaseline } from '@mui/material';
 import SiteUtilities from './utilities/SiteUtilities'
+import ThemeController from './components/Theme/ThemeController';
 
-export const ThemeModeContext = React.createContext({
-    mode: '',
-    setThemeMode: () => {}
-});
+
 
 function App() {
-    const [themeState, setThemeState] = React.useState({
-        mode: SiteUtilities.getSiteTheme(),
-        setThemeMode: (n) => setThemeState({ ...themeState, mode: n })
-    });
-
-    console.log(themeState.mode)
-
-    let theme = createTheme({
-        palette: {
-          mode: themeState.mode,
-        },
-    })
-
     const router = createBrowserRouter([
         {
             path: '/',
             element: <Root />,
             errorElement: <ErrorPage />
+        }, 
+        {
+            path: '/nav1',
+            element: <NavBar1 />
         },
-    
-            
-                {
-                    path: '/nav1',
-                    element: <NavBar1 />
-                },
-                {
-                    path: '/nav2',
-                    element: <NavBar2 />
-                }
-              
-        
+        {
+            path: '/nav2',
+            element: <NavBar2 />
+        }
     ])
 
     return (
-        <ThemeModeContext.Provider value={themeState} >
-            <ThemeProvider theme={theme} >
-                <CssBaseline />
-                <RouterProvider router={router} />
-            </ThemeProvider>
-        </ThemeModeContext.Provider>
+        <ThemeController >
+            <RouterProvider router={router} />
+        </ThemeController >
     )
 }
 
