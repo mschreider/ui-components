@@ -15,7 +15,6 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Slide from '@mui/material/Slide';
-import ThemeToggle from '../../Theme/ThemeToggle';
 import { NavLink } from './Styled/NavBarStyled';
 
 function HideOnScroll(props) {
@@ -92,7 +91,6 @@ function NavBar1(props) {
                         >
                             <MenuIcon />
                         </IconButton>
-                        <ThemeToggle style={{position: 'absolute', top: '0'}} />
                     </Toolbar>
                 </AppBar>
             </HideOnScroll>

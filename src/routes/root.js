@@ -4,7 +4,7 @@ import { Link, Outlet } from 'react-router-dom';
 
 import '../App.css';
 import { Box, Button, CssBaseline } from '@mui/material';
-
+import ThemeToggle from '../components/Theme/ThemeToggle'
 
 
 
@@ -41,7 +41,9 @@ function Root(props) {
 					</Link>
 					
 				</li>
-			</ul>		
+			</ul>	
+			<ThemeToggle />
+	
 		</Box>
 	)
 	
