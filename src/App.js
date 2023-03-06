@@ -8,6 +8,7 @@ import NavBar2 from './components/NavBar/NavBar2/NavBar2';
 import NavBar3 from './components/NavBar/NavBar3/NavBar3';
 import ThemeController from './components/Theme/ThemeController';
 import Hero from './components/HeroSection/Hero1/Hero';
+import Sample1 from './pages/Sample1';
 
 function App() {
     const router = createBrowserRouter([
@@ -31,6 +32,10 @@ function App() {
         {
             path: '/hero1',
             element: <Hero />
+        },
+        {
+            path: '/sample1',
+            element: <Sample1 />
         }
     ])
 

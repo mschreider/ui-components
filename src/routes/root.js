@@ -1,7 +1,6 @@
 
 import React, { useEffect } from 'react'
 import { Link, Outlet } from 'react-router-dom';
-
 import '../App.css';
 import { Box, Button, CssBaseline } from '@mui/material';
 import ThemeToggle from '../components/Theme/ThemeToggle'
@@ -38,6 +37,15 @@ function Root(props) {
 				<li>
 					<Link to='/hero1'>
 						Hero 1
+					</Link>
+					
+				</li>
+			</ul>	
+			<ul>
+				Pages
+				<li>
+					<Link to='/sample1'>
+						Sample Page 1
 					</Link>
 					
 				</li>

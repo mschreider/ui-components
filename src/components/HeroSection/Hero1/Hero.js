@@ -1,15 +1,12 @@
-import { Container, Button, Box, Typography  } from "@mui/material";
+import { Container, Button, Box, Typography, Toolbar  } from "@mui/material";
 import { styled } from "@mui/system";
 import React from "react";
 import cityBackground from '../../../resources/images/city.jpg'
 import HeroLayout from "./HeroLayout";
-import NavBar3 from "../../NavBar/NavBar3/NavBar3";
 
 function Hero() {
-
     return (
-        <div style={{display: 'flex', flexDirection: 'column'}}>
-            <NavBar3 />
+        <Box sx={{display: 'flex', flexDirection: 'column'}}>            
             <HeroLayout
                 sxBackground={{
                     backgroundImage: `url(${cityBackground})`,
@@ -17,8 +14,10 @@ function Hero() {
                     backgroundPosition: 'center',
                 }}
             >
+
                 {/* Increase the network loading priority of the background image. */}
                 <img style={{ display: 'none' }} src={cityBackground} alt="increase priority" />
+                <Toolbar sx={{ backgroundColor: 'transparent'}}/> {/* Adds space below navbar and content. */}
                 <Typography color="inherit" align="center" variant="h2">
                     Upgrade your Sundays
                 </Typography>
@@ -34,7 +33,7 @@ function Hero() {
                     Register
                 </Button>
             </HeroLayout>
-        </div>
+        </Box>
         
     )
 }

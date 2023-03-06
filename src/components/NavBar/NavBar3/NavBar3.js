@@ -21,15 +21,21 @@ const TransparentNavBar = styled(AppBar)(({ theme }) => ({
   backgroundColor: 'transparent',
 }))
 
-const NavLogo = styled('img')({
+const NavLogo = styled('img')(({ theme }) => ({
+  width: 'auto',
+  height: 'auto',
   maxWidth: 65,
+  maxHeight: 60,
   marginLeft: 8,
-  marginRight: 8
-})
+  marginRight: 8,
+  [theme.breakpoints.down('sm')]: { // Apply to sm screens
+    maxWidth: 55,
+    maxHeight: 50,
+  },
+}))
 
 const NavMenu = styled(Box)(({ theme }) => ({
   backgroundColor: 'rgba(255,255,255,0.35)',
-  display: { xs: 'none', sm: 'block' }, 
 
 }))
 
@@ -44,6 +50,16 @@ const NavLink = styled(Button)(({ theme }) => ({
   }
 }));
 
+const MobileMenu = styled(IconButton)(({ theme }) => ({
+  color: "inherit",
+  edge: "start",
+  borderRadius: 0,
+}))
+
+const NavDivider = styled(Divider)(({theme}) => ({
+  borderColor: theme.palette.text.secondary
+}))
+
 
 /**
  * @description Transparent NavBar with absolute positioning, top down drawer, mobile responsive
@@ -55,7 +71,31 @@ function NavBar3(props) {
   
   // Set to auto for full page width
   const drawerWidth = 'auto';
-  const navItems = ['Home', 'About', 'Contact'];
+  const navItems = [
+    {
+      type: 'link',
+      label: 'Home',
+      to: '/'
+    },
+    {
+      type: 'link',
+      label: 'About',
+      to: '/'
+    },
+    {
+      type: 'link',
+      label: 'Contact',
+      to: '/'
+    },
+    {
+      type: 'divider',
+    },
+    {
+      type: 'button',
+      label: 'Sign Up',
+      to: '/'
+    }
+  ]
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -69,12 +109,17 @@ function NavBar3(props) {
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton disableRipple sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item} />
-            </ListItemButton>
-          </ListItem>
+            item.type === 'divider' ?
+            <NavDivider /> :
+              <ListItem key={item} disablePadding>
+                <ListItemButton disableRipple sx={{ textAlign: 'center' }}>
+                  <ListItemText primary={item.label} />
+                </ListItemButton>
+              </ListItem>
+
         ))}
+
+
       </List>
     </Box>
   );
@@ -82,7 +127,7 @@ function NavBar3(props) {
     
     return (
         <Box>
-            <TransparentNavBar component='nav' elevation={0}>
+            <TransparentNavBar component='nav' position='absolute' elevation={0}>
                 <Toolbar sx={{justifyContent: 'space-between'}}>
                   <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}} >
                     <NavLogo src={logo} alt="logo" />
@@ -95,21 +140,21 @@ function NavBar3(props) {
                     </Typography>
                   </div>
                   
-                  <NavMenu >
+                  <NavMenu sx={{display: { xs: 'none', sm: 'flex' } }}>
                     {navItems.map((item) => (
-                      <NavLink key={item} component='a' >
-                        {item}
-                      </NavLink>
-                  ))}
+                      item.type === 'divider' ? 
+                        <NavDivider orientation='vertical' variant="middle" flexItem /> :
+                        <NavLink key={item} component='a' href={item.to} >
+                          {item.label}
+                        </NavLink>
+                    ))}
                   </NavMenu>
-                  <IconButton
-                    color="inherit"
-                    edge="start"
+                  <MobileMenu
                     onClick={handleDrawerToggle}
                     sx={{ display: { xs: 'block', sm: 'none' } }}
                   >
                     <MenuIcon />
-                  </IconButton>
+                  </MobileMenu>
                 </Toolbar>
             </TransparentNavBar>
             <Box component="nav">
