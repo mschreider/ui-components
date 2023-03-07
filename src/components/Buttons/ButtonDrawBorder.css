@@ -3,7 +3,7 @@
 	background: transparent;
 	color:white;
 	width: fit-content;
-	height:50px;
+	height: fit-content;
 	font-size: 20px;
 	padding: 0;
 	margin: 0;
@@ -12,10 +12,11 @@
 }
 
 .button.draw.border span{
-	display: block;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	position: relative;
-	line-height: 50px;
-	height: 50px;
+	height: fit-content;
 	cursor: pointer;
 }
 
@@ -24,10 +25,10 @@
 	position: absolute;
 	bottom:0;
 	left: 50%;
-	width: 20px;
+	width: 10px;
 	height: 0px;
 	
-	border: 1px solid white;
+	border: 2px solid white;
 	border-left: none;
 	border-top: none;
 	
@@ -35,8 +36,8 @@
 }
 
 .button.draw.border:hover > span:after{
-	width: calc(50% - 1px);
-	height: calc(100% - 2px);
+	width: 50%;
+	height: 100%;
 	transition: width 0.15s ease-out, height 0.15s ease-out 0.15s;
 }
 
@@ -45,22 +46,26 @@
 	position: absolute;
 	bottom:0;
 	right: 50%;
-	width: 20px;
+	width: 10px;
 	height: 0;
 	
-	border: 1px solid white;
+	border: 2px solid white;
 	border-right: none;
 	border-top: none;
 	
-	    transition: height 0.15s ease-out, width 0.15s ease-out 0.15s;
+	transition: height 0.15s ease-out, width 0.15s ease-out 0.15s;
 }
 
 .button.draw.border:hover > span:before{
-	width: calc(50% - 1px);
-	height: calc(100% - 2px);
+	width: 50%;
+	height: 100%;
 	transition: width 0.15s ease-out, height 0.15s ease-out 0.15s;
 }
 
+.button.button.draw.border > span > span {
+	padding: 8px;
+
+}
 
 .button.draw.border > span > span:before{
 	content:'';
@@ -70,12 +75,11 @@
 	width: 1px;
 	height: 1px;
 	opacity: 0;
-	
 }
 
 .button.draw.border:hover > span > span:before{
 	opacity: 1;
-	border-top: 1px solid white;
+	border-top: 2px solid white;
 	width: calc(50%);
 	height: 1px;
 	transition: opacity 0s ease-out 0.29s, width 0.15s ease-out 0.3s;
@@ -94,7 +98,7 @@
 
 .button.draw.border:hover > span > span:after{
 	opacity: 1;
-	border-top: 1px solid white;
+	border-top: 2px solid white;
 	width: calc(50%);
 	height: 1px;
 	transition: opacity 0s ease-out 0.29s, width 0.15s ease-out 0.3s;

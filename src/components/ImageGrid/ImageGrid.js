@@ -36,7 +36,15 @@ const CategoryWrapper = styled('div')(({theme}) => ({
   },
 }))
 
-
+const BoxBackgroundImage = styled(Box)({
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+})
 
 const images = [
   {
@@ -95,33 +103,18 @@ function CategoriesImageGrid() {
       <Box sx={{ mt: 8, display: 'flex', flexWrap: 'wrap' }}>
         {images.map((image) => (
           <CategoryWrapper key={image.title} style={{width: image.width}} >
-            <Box
-              sx={{
-                position: 'absolute',
-                left: 0,
-                right: 0,
-                top: 0,
-                bottom: 0,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center 40%',
-                backgroundImage: `url(${image.url})`,
-              }}
-            />
+            <BoxBackgroundImage sx={{backgroundImage: `url(${image.url})`}} />
             <ImageBackdrop className="imageBackdrop" />
             <Box
               sx={{
-                position: 'absolute',
-                left: 0,
-                right: 0,
-                top: 0,
-                bottom: 0,
+                height: '100%',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 color: 'common.white',
               }}
             >
-            <ButtonDrawBorder text={image.title} />
+                <ButtonDrawBorder text={image.title} />
               
             </Box>
           </CategoryWrapper>

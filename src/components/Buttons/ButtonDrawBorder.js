@@ -1,9 +1,9 @@
 import React from 'react'
-import './ButtonDrawBorder.less'
+import './ButtonDrawBorder.css'
 
 function ButtonDrawBorder(props) {
     return (
-            <button className={(props.className ? 'button draw border ' + props.className : 'button draw border')}>
+            <button className={(props.className ? 'button draw border ' + props.className : 'button draw border')} {...props} >
                 <span>
                     <span>
                         {props.text}
