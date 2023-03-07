@@ -2,7 +2,7 @@ import * as React from 'react';
 import './NavBar3.less'
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
+import { Divider as MuiDivider } from '@mui/material';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
@@ -56,7 +56,7 @@ const MobileMenu = styled(IconButton)(({ theme }) => ({
   borderRadius: 0,
 }))
 
-const NavDivider = styled(Divider)(({theme}) => ({
+const Divider = styled(MuiDivider)(({theme}) => ({
   borderColor: theme.palette.text.secondary
 }))
 
@@ -110,7 +110,7 @@ function NavBar3(props) {
       <List>
         {navItems.map((item) => (
             item.type === 'divider' ?
-            <NavDivider /> :
+            <Divider /> :
               <ListItem key={item} disablePadding>
                 <ListItemButton disableRipple sx={{ textAlign: 'center' }}>
                   <ListItemText primary={item.label} />
@@ -143,7 +143,7 @@ function NavBar3(props) {
                   <NavMenu sx={{display: { xs: 'none', sm: 'flex' } }}>
                     {navItems.map((item) => (
                       item.type === 'divider' ? 
-                        <NavDivider orientation='vertical' variant="middle" flexItem /> :
+                        <Divider orientation='vertical' variant="middle" flexItem /> :
                         <NavLink key={item} component='a' href={item.to} >
                           {item.label}
                         </NavLink>
