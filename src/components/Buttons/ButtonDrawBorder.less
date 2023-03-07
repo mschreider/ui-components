@@ -1,0 +1,101 @@
+.button.draw.border{
+	border: none;
+	background: transparent;
+	color:white;
+	width: fit-content;
+	height:50px;
+	font-size: 20px;
+	padding: 0;
+	margin: 0;
+	outline: none;
+	z-index: 10;
+}
+
+.button.draw.border span{
+	display: block;
+	position: relative;
+	line-height: 50px;
+	height: 50px;
+	cursor: pointer;
+}
+
+.button.draw.border > span:after{
+	content:'';
+	position: absolute;
+	bottom:0;
+	left: 50%;
+	width: 20px;
+	height: 0px;
+	
+	border: 1px solid white;
+	border-left: none;
+	border-top: none;
+	
+	transition: height 0.15s ease-out, width 0.15s ease-out 0.15s;
+}
+
+.button.draw.border:hover > span:after{
+	width: calc(50% - 1px);
+	height: calc(100% - 2px);
+	transition: width 0.15s ease-out, height 0.15s ease-out 0.15s;
+}
+
+.button.draw.border > span:before{
+	content:'';
+	position: absolute;
+	bottom:0;
+	right: 50%;
+	width: 20px;
+	height: 0;
+	
+	border: 1px solid white;
+	border-right: none;
+	border-top: none;
+	
+	    transition: height 0.15s ease-out, width 0.15s ease-out 0.15s;
+}
+
+.button.draw.border:hover > span:before{
+	width: calc(50% - 1px);
+	height: calc(100% - 2px);
+	transition: width 0.15s ease-out, height 0.15s ease-out 0.15s;
+}
+
+
+.button.draw.border > span > span:before{
+	content:'';
+	position: absolute;
+	top:0;
+	right: 0%;
+	width: 1px;
+	height: 1px;
+	opacity: 0;
+	
+}
+
+.button.draw.border:hover > span > span:before{
+	opacity: 1;
+	border-top: 1px solid white;
+	width: calc(50%);
+	height: 1px;
+	transition: opacity 0s ease-out 0.29s, width 0.15s ease-out 0.3s;
+}
+
+.button.draw.border > span > span:after{
+	content:'';
+	position: absolute;
+	top:0;
+	left: 0%;
+	width: 1px;
+	height: 1px;
+	opacity: 0;
+	
+}
+
+.button.draw.border:hover > span > span:after{
+	opacity: 1;
+	border-top: 1px solid white;
+	width: calc(50%);
+	height: 1px;
+	transition: opacity 0s ease-out 0.29s, width 0.15s ease-out 0.3s;
+}
