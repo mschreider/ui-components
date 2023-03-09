@@ -35,7 +35,7 @@ const NavLogo = styled('img')(({ theme }) => ({
 }))
 
 const NavMenu = styled(Box)(({ theme }) => ({
-  backgroundColor: 'rgba(255,255,255,0.35)',
+  backgroundColor: 'rgba(255,255,255,0.45)',
 
 }))
 
