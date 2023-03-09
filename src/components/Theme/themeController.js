@@ -32,11 +32,7 @@ function ThemeController({ children }) {
                   paper: '#424242',
                 }
             }),
-        }
-
-        
-
-        
+        } 
     })
 
     //theme = responsiveFontSizes(theme)
