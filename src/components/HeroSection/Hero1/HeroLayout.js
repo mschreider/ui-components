@@ -32,7 +32,7 @@ const BackgroundTint = styled(Box)({
     right: 0,
     top: 0,
     bottom: 0,
-    backgroundColor: 'rgba(0,0,0,0.25)',
+    backgroundColor: 'rgba(0,0,0,0.15)',
     zIndex: -1,
 })
 

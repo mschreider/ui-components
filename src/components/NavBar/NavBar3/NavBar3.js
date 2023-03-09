@@ -41,6 +41,7 @@ const NavMenu = styled(Box)(({ theme }) => ({
 
 const NavLink = styled(Button)(({ theme }) => ({
   textDecoration: 'none',
+  textTransform: 'none',
   color: theme.palette.text.primary,
   padding: theme.spacing(1),
   borderRadius: 0,

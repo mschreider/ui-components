@@ -5,12 +5,13 @@ import { createTheme } from '@mui/material/styles'
  */
 
 let appTheme = createTheme({
-    typography: {
+    
+    /*typography: {
         
-        /*h6: {
+        h6: {
             fontSize: 30
-        }*/
-    },
+        }
+    },*/
 })
 
 export { appTheme }

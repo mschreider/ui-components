@@ -16,8 +16,27 @@ function ThemeController({ children }) {
 
     let theme = createTheme({
         palette: {
-          mode: themeState.mode,
-        },
+            ...themeState.mode,
+            ...(themeState.mode === 'light'
+            ? {
+                    // palette values for light mode
+                    background: {
+                        default: '#fafafa',
+                        paper: '#fff'
+                    }
+                }
+            : {
+                // palette values for dark mode
+                background: {
+                  default: '#303030',
+                  paper: '#424242',
+                }
+            }),
+        }
+
+        
+
+        
     })
 
     //theme = responsiveFontSizes(theme)
