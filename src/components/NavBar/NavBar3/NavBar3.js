@@ -39,13 +39,26 @@ const NavMenu = styled(Box)(({ theme }) => ({
 
 }))
 
-const NavLink = styled(Button)(({ theme }) => ({
+const NavMenuLink = styled(Button)(({ theme }) => ({
   textDecoration: 'none',
   textTransform: 'none',
   color: theme.palette.text.primary,
   padding: theme.spacing(1),
   borderRadius: 0,
-  fontSize: theme.typography.h6.fontSize,
+  fontSize: theme.typography.h5.fontSize,
+  '&:hover': {
+    backgroundColor: 'rgba(0,0,0,0.2)'
+  }
+}));
+
+const NavMenuButton = styled(Button)(({ theme }) => ({
+  textDecoration: 'none',
+  textTransform: 'none',
+  color: theme.palette.primary.contrastText,
+  backgroundColor: theme.palette.text.primary,
+  padding: theme.spacing(1),
+  borderRadius: 0,
+  fontSize: theme.typography.h5.fontSize,
   '&:hover': {
     backgroundColor: 'rgba(0,0,0,0.2)'
   }
@@ -58,6 +71,8 @@ const MobileMenu = styled(IconButton)(({ theme }) => ({
 }))
 
 const Divider = styled(MuiDivider)(({theme}) => ({
+  marginLeft: theme.spacing(1),
+  marginRight: theme.spacing(1),
   borderColor: theme.palette.text.secondary
 }))
 
@@ -88,9 +103,9 @@ function NavBar3(props) {
       label: 'Contact',
       to: '/'
     },
-    {
+    /*{
       type: 'divider',
-    },
+    },*/
     {
       type: 'button',
       label: 'Sign Up',
@@ -104,7 +119,7 @@ function NavBar3(props) {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Typography variant="h6" color="primary" sx={{ my: 1 }}>
+      <Typography variant="h3" color="text.primary" sx={{ my: 1 }}>
         MUI
       </Typography>
       <Divider />
@@ -114,70 +129,82 @@ function NavBar3(props) {
             <Divider /> :
               <ListItem key={item} disablePadding>
                 <ListItemButton disableRipple sx={{ textAlign: 'center' }}>
-                  <ListItemText primary={item.label} />
+                  <ListItemText primary={item.label} primaryTypographyProps={{variant: 'h5'}} />
                 </ListItemButton>
               </ListItem>
-
         ))}
-
-
       </List>
     </Box>
   );
 
+  const renderNavMenuItems = (
+    navItems.map((item) => {
+      if (item.type === 'divider') {
+        return <Divider orientation='vertical' variant="middle" flexItem /> 
+      }
+      else if (item.type === 'link') {
+        return (
+          <NavMenuLink key={item} component='a' href={item.to} >
+            {item.label}
+          </NavMenuLink>
+        )
+      }
+      else if (item.type === 'button') {
+        return (
+          <NavMenuButton key={item} component='a' href={item.to} >
+            {item.label}
+          </NavMenuButton>
+        )
+      }
+    })
+  )
     
-    return (
-        <Box>
-            <TransparentNavBar component='nav' position='absolute' elevation={0}>
-                <Toolbar sx={{justifyContent: 'space-between'}}>
-                  <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}} >
-                    <NavLogo src={logo} alt="logo" />
-                    <Typography
-                        variant="h6"
-                        component="div"
-                        color='text.primary'
-                    >
-                        MUI
-                    </Typography>
-                  </div>
-                  
-                  <NavMenu sx={{display: { xs: 'none', sm: 'flex' } }}>
-                    {navItems.map((item) => (
-                      item.type === 'divider' ? 
-                        <Divider orientation='vertical' variant="middle" flexItem /> :
-                        <NavLink key={item} component='a' href={item.to} >
-                          {item.label}
-                        </NavLink>
-                    ))}
-                  </NavMenu>
-                  <MobileMenu
-                    onClick={handleDrawerToggle}
-                    sx={{ display: { xs: 'block', sm: 'none' } }}
+  return (
+      <Box>
+          <TransparentNavBar component='nav' position='absolute' elevation={0}>
+              <Toolbar sx={{justifyContent: 'space-between'}}>
+                <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}} >
+                  <NavLogo src={logo} alt="logo" />
+                  <Typography
+                      variant="h4"
+                      component="div"
+                      color='text.primary'
                   >
-                    <MenuIcon />
-                  </MobileMenu>
-                </Toolbar>
-            </TransparentNavBar>
-            <Box component="nav">
-                <Drawer
-                    variant="temporary"
-                    anchor='top'
-                    open={mobileOpen}
-                    onClose={handleDrawerToggle}
-                    ModalProps={{
-                        keepMounted: true, // Better open performance on mobile.
-                    }}
-                    sx={{
-                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-                    }}
+                      MUI
+                  </Typography>
+                </div>
+                
+                <NavMenu sx={{display: { xs: 'none', sm: 'flex' } }}>
+                  {renderNavMenuItems}
+                </NavMenu>
+                <MobileMenu
+                  onClick={handleDrawerToggle}
+                  sx={{ display: { xs: 'block', sm: 'none' } }}
                 >
-                    {drawer}
-                </Drawer>
-            </Box>
-            
-        
-        </Box>
-    );
+                  <MenuIcon />
+                </MobileMenu>
+              </Toolbar>
+          </TransparentNavBar>
+          <Box component="nav">
+              <Drawer
+                  variant="temporary"
+                  anchor='top'
+                  open={mobileOpen}
+                  onClose={handleDrawerToggle}
+                  ModalProps={{
+                      keepMounted: true, // Better open performance on mobile.
+                  }}
+                  sx={{
+                      '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+                  }}
+              >
+                  {drawer}
+              </Drawer>
+          </Box>
+          
+      
+      </Box>
+  );
 }
 
 
