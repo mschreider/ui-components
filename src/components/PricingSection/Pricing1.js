@@ -1,28 +1,20 @@
 import React, { useState } from 'react'
-import { Box, Container, Typography, Card, CardHeader, CardContent, CardActions, Button, Switch } from '@mui/material'
+import { Box, Container, Typography, Card, CardHeader, CardContent, CardActions, Button, Switch, List, ListItem, ListItemIcon, ListItemText } from '@mui/material'
 import StarIcon from '@mui/icons-material/StarBorder';
 import {priceConfig} from './PricingConfig'
 import { borderColor, styled } from '@mui/system';
-import { ReactComponent as BackgroundGraphic } from '../../resources/graphics/red1.svg'
+import {default as BackgroundGraphic} from '../../resources/graphics/red1.svg'
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 const PriceOption = styled(Switch)(({ theme }) => ({
-    '& .MuiSwitch-switchBase': {
-        color: theme.palette.secondary.main
-    },
-    '& .MuiSwitch-switchBase.Mui-checked': {
-        color: theme.palette.secondary.main
-    },
     '& .MuiSwitch-track': {
-        backgroundColor: theme.palette.background.default
+        backgroundColor: theme.palette.secondary.main
     },
-  }))
+    '& .MuiSwitch-thumb': {
+        color: theme.palette.secondary.main
+    }
+}))
 
-const GraphicContainer = styled('div')({
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-});
 
 function Pricing1(props) {
     const [priceOption, setPriceOption] = useState('monthly')
@@ -69,7 +61,7 @@ function Pricing1(props) {
       
     const togglePriceOption = () => {
         if (priceOption === 'monthly') {
-            setPriceOption('yearly')
+            setPriceOption('annually')
         }
         else {
             setPriceOption('monthly')
@@ -78,10 +70,7 @@ function Pricing1(props) {
 
     return (
         <Box component='section' >
-            <GraphicContainer sx={{zIndex: -2}}>
-                <BackgroundGraphic />
-
-            </GraphicContainer>
+        
             {/* Hero unit */}
             <Container maxWidth="sm" component="main" sx={{ pt: 8, pb: 6 }}>
                 <Typography
@@ -103,24 +92,26 @@ function Pricing1(props) {
             <Container maxWidth="md" component="main" sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                 <Box>
                     <Typography variant="subtitle1" component="span">{priceConfig.option.monthly.label}</Typography>
-                    &nbsp; <PriceOption name="checkbox" color="primary" checked={priceOption === 'monthly'} onChange={togglePriceOption} /> &nbsp;
+                    &nbsp; <PriceOption name="checkbox" color="secondary" checked={priceOption === 'monthly'} onChange={togglePriceOption} /> &nbsp;
                     <Typography variant="subtitle1" component="span">{priceConfig.option.annually.label}</Typography>
                 </Box>
                 <Box display='flex' justifyContent='center' flexWrap='wrap' alignItems='center'>
                     {priceConfig.plans.map((tier) => (
                         // Enterprise card is full width at sm breakpoint
                         
-                            <Card raised sx={{mx: 2, my: 1}}>
+                            <Card raised sx={{mx: 2, my: 1, px: 2, py: 1, minHeight: '350px'}}>
                                 <CardHeader
                                     title={tier.title}
                                     subheader={tier.subHeader}
-                                    titleTypographyProps={{ align: 'center' }}
+                                    titleTypographyProps={{ align: 'center', variant: 'h5' }}
                                     action={tier.title === 'Pro' ? <StarIcon /> : null}
                                     subheaderTypographyProps={{
                                         align: 'center',
+                                        variant: 'h6'
                                     }}
                                     sx={{
-                                        backgroundColor: 'background.paper'
+                                        backgroundColor: 'background.paper',
+                                        minHeight: '70px'
                                     }}
                                 />
                                 <CardContent>
@@ -132,25 +123,25 @@ function Pricing1(props) {
                                         mb: 2,
                                         }}
                                     >
-                                        <Typography component="h2" variant="h3" color="text.primary">
+                                        <Typography variant="h2" color="text.primary">
                                             ${tier.priceMonthly}
                                         </Typography>
                                         <Typography variant="h6" color="text.secondary">
                                             {priceConfig.option[priceOption].suffix}
                                         </Typography>
                                     </Box>
-                                    <ul>
-                                        {tier.description.map((line) => (
-                                            <Typography
-                                                component="li"
-                                                variant="subtitle1"
-                                                align="center"
-                                                key={line}
-                                            >
-                                                {line}
-                                            </Typography>
-                                        ))}
-                                    </ul>
+                                    
+                                        <List dense={true}>
+                                            {tier.description.map((line) => (
+                                                <ListItem>
+                                                    <ListItemIcon>
+                                                        <CheckCircleIcon sx={{color: 'secondary.main'}}/>
+                                                    </ListItemIcon>
+                                                    <ListItemText primary={line}  />
+                                                </ListItem>
+                                            ))}
+                                        </List>
+                                    
                                 </CardContent>
                                 <CardActions>
                                     <Button fullWidth variant={tier.buttonVariant}>

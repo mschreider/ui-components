@@ -23,7 +23,7 @@ const priceConfig = {
                 'Email support',
             ],
             buttonText: 'SELECT PLAN',
-            buttonVariant: 'outlined',
+            buttonVariant: 'outlined'            
         },
         {
             title: 'Pro',
