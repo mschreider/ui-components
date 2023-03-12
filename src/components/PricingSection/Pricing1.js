@@ -1,9 +1,32 @@
-import React from 'react'
-import { Box, Container, Typography, Card, CardHeader, CardContent, CardActions, Button  } from '@mui/material'
+import React, { useState } from 'react'
+import { Box, Container, Typography, Card, CardHeader, CardContent, CardActions, Button, Switch } from '@mui/material'
 import StarIcon from '@mui/icons-material/StarBorder';
+import {priceConfig} from './PricingConfig'
+import { borderColor, styled } from '@mui/system';
+import { ReactComponent as BackgroundGraphic } from '../../resources/graphics/red1.svg'
 
+const PriceOption = styled(Switch)(({ theme }) => ({
+    '& .MuiSwitch-switchBase': {
+        color: theme.palette.secondary.main
+    },
+    '& .MuiSwitch-switchBase.Mui-checked': {
+        color: theme.palette.secondary.main
+    },
+    '& .MuiSwitch-track': {
+        backgroundColor: theme.palette.background.default
+    },
+  }))
+
+const GraphicContainer = styled('div')({
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+});
 
 function Pricing1(props) {
+    const [priceOption, setPriceOption] = useState('monthly')
+
     const tiers = [
         {
           title: 'Free',
@@ -44,9 +67,21 @@ function Pricing1(props) {
         },
     ];
       
+    const togglePriceOption = () => {
+        if (priceOption === 'monthly') {
+            setPriceOption('yearly')
+        }
+        else {
+            setPriceOption('monthly')
+        }
+    }
 
     return (
-        <Container >
+        <Box component='section' >
+            <GraphicContainer sx={{zIndex: -2}}>
+                <BackgroundGraphic />
+
+            </GraphicContainer>
             {/* Hero unit */}
             <Container maxWidth="sm" component="main" sx={{ pt: 8, pb: 6 }}>
                 <Typography
@@ -65,15 +100,20 @@ function Pricing1(props) {
                 </Typography>
             </Container>
             {/* End hero unit */}
-            <Container maxWidth="md" component="main">
+            <Container maxWidth="md" component="main" sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                <Box>
+                    <Typography variant="subtitle1" component="span">{priceConfig.option.monthly.label}</Typography>
+                    &nbsp; <PriceOption name="checkbox" color="primary" checked={priceOption === 'monthly'} onChange={togglePriceOption} /> &nbsp;
+                    <Typography variant="subtitle1" component="span">{priceConfig.option.annually.label}</Typography>
+                </Box>
                 <Box display='flex' justifyContent='center' flexWrap='wrap' alignItems='center'>
-                    {tiers.map((tier) => (
+                    {priceConfig.plans.map((tier) => (
                         // Enterprise card is full width at sm breakpoint
                         
-                            <Card raised sx={{mx: 2}}>
+                            <Card raised sx={{mx: 2, my: 1}}>
                                 <CardHeader
                                     title={tier.title}
-                                    subheader={tier.subheader}
+                                    subheader={tier.subHeader}
                                     titleTypographyProps={{ align: 'center' }}
                                     action={tier.title === 'Pro' ? <StarIcon /> : null}
                                     subheaderTypographyProps={{
@@ -93,10 +133,10 @@ function Pricing1(props) {
                                         }}
                                     >
                                         <Typography component="h2" variant="h3" color="text.primary">
-                                            ${tier.price}
+                                            ${tier.priceMonthly}
                                         </Typography>
                                         <Typography variant="h6" color="text.secondary">
-                                            /mo
+                                            {priceConfig.option[priceOption].suffix}
                                         </Typography>
                                     </Box>
                                     <ul>
@@ -126,7 +166,7 @@ function Pricing1(props) {
                 
                 
             </Container>
-        </Container>
+        </Box>
     )
 }
 
