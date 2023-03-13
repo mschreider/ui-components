@@ -5,6 +5,7 @@ import {priceConfig} from './PricingConfig'
 import { borderColor, styled } from '@mui/system';
 import {default as BackgroundGraphic} from '../../resources/graphics/red1.svg'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CheckIcon from '@mui/icons-material/Check';
 
 const PriceOption = styled(Switch)(({ theme }) => ({
     '& .MuiSwitch-track': {
@@ -19,45 +20,7 @@ const PriceOption = styled(Switch)(({ theme }) => ({
 function Pricing1(props) {
     const [priceOption, setPriceOption] = useState('monthly')
 
-    const tiers = [
-        {
-          title: 'Free',
-          price: '0',
-          description: [
-            '10 users included',
-            '2 GB of storage',
-            'Help center access',
-            'Email support',
-          ],
-          buttonText: 'Sign up for free',
-          buttonVariant: 'outlined',
-        },
-        {
-          title: 'Pro',
-          subheader: 'Most popular',
-          price: '15',
-          description: [
-            '20 users included',
-            '10 GB of storage',
-            'Help center access',
-            'Priority email support',
-          ],
-          buttonText: 'Get started',
-          buttonVariant: 'contained',
-        },
-        {
-          title: 'Enterprise',
-          price: '30',
-          description: [
-            '50 users included',
-            '30 GB of storage',
-            'Help center access',
-            'Phone & email support',
-          ],
-          buttonText: 'Contact us',
-          buttonVariant: 'outlined',
-        },
-    ];
+    
       
     const togglePriceOption = () => {
         if (priceOption === 'monthly') {
@@ -89,66 +52,66 @@ function Pricing1(props) {
                 </Typography>
             </Container>
             {/* End hero unit */}
-            <Container maxWidth="md" component="main" sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+            <Container maxWidth="lg" component="main" sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                 <Box>
                     <Typography variant="subtitle1" component="span">{priceConfig.option.monthly.label}</Typography>
-                    &nbsp; <PriceOption name="checkbox" color="secondary" checked={priceOption === 'monthly'} onChange={togglePriceOption} /> &nbsp;
+                    &nbsp; <PriceOption name="checkbox" color="secondary" checked={priceOption !== 'monthly'} onChange={togglePriceOption} /> &nbsp;
                     <Typography variant="subtitle1" component="span">{priceConfig.option.annually.label}</Typography>
                 </Box>
                 <Box display='flex' justifyContent='center' flexWrap='wrap' alignItems='center'>
-                    {priceConfig.plans.map((tier) => (
+                    {priceConfig.plans.map((plan) => (
                         // Enterprise card is full width at sm breakpoint
-                        
-                            <Card raised sx={{mx: 2, my: 1, px: 2, py: 1, minHeight: '350px'}}>
-                                <CardHeader
-                                    title={tier.title}
-                                    subheader={tier.subHeader}
-                                    titleTypographyProps={{ align: 'center', variant: 'h5' }}
-                                    action={tier.title === 'Pro' ? <StarIcon /> : null}
-                                    subheaderTypographyProps={{
-                                        align: 'center',
-                                        variant: 'h6'
-                                    }}
+                        <Card raised sx={{mx: 2, my: 1, px: 2, py: 1, minHeight: '350px', borderRadius: 4, color: (plan.highlighted ? 'primary.contrastText' : 'text.primary'), backgroundColor: (plan.highlighted ? 'primary.dark' : 'background.paper')}} >
+                            <CardHeader
+                                title={plan.title}
+                                subheader={plan.subHeader}
+                                titleTypographyProps={{ align: 'center', variant: 'h4', color: 'inherit' }}
+                                action={plan.title === 'Pro' ? <StarIcon /> : null}
+                                subheaderTypographyProps={{
+                                    align: 'center',
+                                    variant: 'h6',
+                                    color: 'inherit'
+                                }}
+                                sx={{
+                                    minHeight: '70px'
+                                }}
+                            />
+                            <CardContent>
+                                <Box
                                     sx={{
-                                        backgroundColor: 'background.paper',
-                                        minHeight: '70px'
-                                    }}
-                                />
-                                <CardContent>
-                                    <Box
-                                        sx={{
                                         display: 'flex',
                                         justifyContent: 'center',
                                         alignItems: 'baseline',
                                         mb: 2,
-                                        }}
-                                    >
-                                        <Typography variant="h2" color="text.primary">
-                                            ${tier.priceMonthly}
-                                        </Typography>
-                                        <Typography variant="h6" color="text.secondary">
-                                            {priceConfig.option[priceOption].suffix}
-                                        </Typography>
-                                    </Box>
-                                    
-                                        <List dense={true}>
-                                            {tier.description.map((line) => (
-                                                <ListItem>
-                                                    <ListItemIcon>
-                                                        <CheckCircleIcon sx={{color: 'secondary.main'}}/>
-                                                    </ListItemIcon>
-                                                    <ListItemText primary={line}  />
-                                                </ListItem>
-                                            ))}
-                                        </List>
-                                    
-                                </CardContent>
-                                <CardActions>
-                                    <Button fullWidth variant={tier.buttonVariant}>
-                                        {tier.buttonText}
-                                    </Button>
-                                </CardActions>
-                            </Card>
+                                        color: (plan.highlighted ? 'primary.contrastText' : 'text.primary'),
+                                    }}
+                                >
+                                    <Typography variant="h2">
+                                        ${plan.price[priceOption]}
+                                    </Typography>
+                                    <Typography variant="h6">
+                                        {priceConfig.option[priceOption].suffix}
+                                    </Typography>
+                                </Box>
+                                
+                                    <List dense={true}>
+                                        {plan.description.map((line) => (
+                                            <ListItem>
+                                                <ListItemIcon>
+                                                    <CheckIcon sx={{color: 'primary.light'}}/>
+                                                </ListItemIcon>
+                                                <ListItemText primary={line} primaryTypographyProps={{variant: 'h5'}}  />
+                                            </ListItem>
+                                        ))}
+                                    </List>
+                                
+                            </CardContent>
+                            <CardActions>
+                                <Button fullWidth size='large' variant='contained' sx={{fontSize: '1.2rem', color: 'primary.contrastText',  backgroundColor: 'primary.light'}}>
+                                    {plan.buttonText}
+                                </Button>
+                            </CardActions>
+                        </Card>
                    
                     ))}
                 </Box>

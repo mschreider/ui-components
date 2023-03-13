@@ -11,11 +11,14 @@ const priceConfig = {
     },
     plans: [
         {
+            highlighted: false,
             title: 'Free',
             subHeader: undefined,
             currency: "$",
-            priceMonthly: '0',
-            priceAnnualy: '0',
+            price: {
+                monthly: '0',
+                annually: '0'
+            },
             description: [
                 '10 users included',
                 '2 GB of storage',
@@ -23,14 +26,17 @@ const priceConfig = {
                 'Email support',
             ],
             buttonText: 'SELECT PLAN',
-            buttonVariant: 'outlined'            
+            buttonVariant: 'contained'            
         },
         {
+            highlighted: true,
             title: 'Pro',
             subHeader: 'Most Popular',
             currency: "$",
-            priceMonthly: '15',
-            priceAnnualy: '10',
+            price: {
+                monthly: '15',
+                annually: '10'
+            },
             description: [
                 '20 users included',
                 '10 GB of storage',
@@ -41,11 +47,14 @@ const priceConfig = {
             buttonVariant: 'contained',
         },
         {
+            highlighted: false,
             title: 'Enterprise',
             subHeader: undefined,
             currency: "$",
-            priceMonthly: '30',
-            priceAnnualy: '20',
+            price: {
+                monthly: '30',
+                annually: '20'
+            },
             description: [
                 '50 users included',
                 '30 GB of storage',
