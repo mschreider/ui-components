@@ -6,6 +6,8 @@ import Container from '@mui/material/Container';
 import { Typography } from '@mui/material';
 import ButtonDrawBorder from '../Buttons/ButtonDrawBorder'
 import { images } from './ImageGridConfig';
+import { Link } from 'react-router-dom';
+
 
 const ImageBackdrop = styled('div')(({ theme }) => ({
     position: 'absolute',
@@ -67,7 +69,9 @@ function CategoriesImageGrid() {
                     color: 'common.white',
                 }}
                 >
-                    <ButtonDrawBorder text={image.title} />
+                    <Link to={image.to}>
+                        <ButtonDrawBorder text={image.title} />
+                    </Link>
                 </Box>
             </CategoryWrapper>
             ))}

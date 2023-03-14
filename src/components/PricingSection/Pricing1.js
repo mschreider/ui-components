@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Box, Container, Typography, Card, CardHeader, CardContent, CardActions, Button, Switch, List, ListItem, ListItemIcon, ListItemText } from '@mui/material'
-import StarIcon from '@mui/icons-material/StarBorder';
+import StarIcon from '@mui/icons-material/Star';
 import {priceConfig} from './PricingConfig'
 import { borderColor, styled } from '@mui/system';
 import {default as BackgroundGraphic} from '../../resources/graphics/red1.svg'
@@ -16,12 +16,22 @@ const PriceOption = styled(Switch)(({ theme }) => ({
     }
 }))
 
+const PlanStandout = styled('div')(({ theme }) => ({
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    fontSize: '1.2rem',
+    textAlign:'center',
+    padding: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+    width: '100%',
+    backgroundColor: theme.palette.primary.light,
+    color: theme.palette.primary.contrastText
+}))
 
 function Pricing1(props) {
     const [priceOption, setPriceOption] = useState('monthly')
 
-    
-      
     const togglePriceOption = () => {
         if (priceOption === 'monthly') {
             setPriceOption('annually')
@@ -61,22 +71,25 @@ function Pricing1(props) {
                 <Box display='flex' justifyContent='center' flexWrap='wrap' alignItems='center'>
                     {priceConfig.plans.map((plan) => (
                         // Enterprise card is full width at sm breakpoint
-                        <Card raised sx={{mx: 2, my: 1, px: 2, py: 1, minHeight: '350px', borderRadius: 4, color: (plan.highlighted ? 'primary.contrastText' : 'text.primary'), backgroundColor: (plan.highlighted ? 'primary.dark' : 'background.paper')}} >
-                            <CardHeader
+                        <Card raised sx={{position: 'relative', mx: 2, my: 1, px: 2, py: 1, minHeight: '350px', borderRadius: 4, color: (plan.highlighted ? 'primary.contrastText' : 'text.primary'), backgroundColor: (plan.highlighted ? 'primary.dark' : 'background.paper')}} >
+                            {
+                                plan.subHeader && 
+                                    <PlanStandout >
+                                        {plan.subHeader}
+                                    </PlanStandout>
+                            }
+                            {/*<CardHeader
                                 title={plan.title}
-                                subheader={plan.subHeader}
                                 titleTypographyProps={{ align: 'center', variant: 'h4', color: 'inherit' }}
-                                action={plan.title === 'Pro' ? <StarIcon /> : null}
-                                subheaderTypographyProps={{
-                                    align: 'center',
-                                    variant: 'h6',
-                                    color: 'inherit'
-                                }}
+                                
                                 sx={{
                                     minHeight: '70px'
                                 }}
-                            />
-                            <CardContent>
+                            />*/}
+                            <CardContent>  
+                                <Typography variant='h4' align='center' color='inherit' sx={{mt: 2, mb: 2, p: 1}} >
+                                    {plan.title}
+                                </Typography>                          
                                 <Box
                                     sx={{
                                         display: 'flex',
@@ -89,14 +102,14 @@ function Pricing1(props) {
                                     <Typography variant="h2">
                                         ${plan.price[priceOption]}
                                     </Typography>
-                                    <Typography variant="h6">
+                                    <Typography variant="h5">
                                         {priceConfig.option[priceOption].suffix}
                                     </Typography>
                                 </Box>
                                 
                                     <List dense={true}>
                                         {plan.description.map((line) => (
-                                            <ListItem>
+                                            <ListItem sx={{px: 0}}>
                                                 <ListItemIcon>
                                                     <CheckIcon sx={{color: 'primary.light'}}/>
                                                 </ListItemIcon>

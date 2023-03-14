@@ -26,12 +26,11 @@ const priceConfig = {
                 'Email support',
             ],
             buttonText: 'SELECT PLAN',
-            buttonVariant: 'contained'            
         },
         {
             highlighted: true,
             title: 'Pro',
-            subHeader: 'Most Popular',
+            subHeader: 'MOST POPULAR',
             currency: "$",
             price: {
                 monthly: '15',
@@ -44,7 +43,6 @@ const priceConfig = {
                 'Priority email support',
             ],
             buttonText: 'SELECT PLAN',
-            buttonVariant: 'contained',
         },
         {
             highlighted: false,
@@ -62,10 +60,8 @@ const priceConfig = {
                 'Phone & email support',
             ],
             buttonText: 'SELECT PLAN',
-            buttonVariant: 'contained',
         }
     ]
-    
 }
 
 export {priceConfig}
