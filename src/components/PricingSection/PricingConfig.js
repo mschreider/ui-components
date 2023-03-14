@@ -1,11 +1,11 @@
 const priceConfig = {
     option: {
         monthly: {
-            label: 'monthly',
+            label: 'Monthly',
             suffix: '/mo'
         },
-        annually: {
-            label: 'yearly',
+        yearly: {
+            label: 'Yearly',
             suffix: '/yr'
         }
     },
@@ -17,7 +17,7 @@ const priceConfig = {
             currency: "$",
             price: {
                 monthly: '0',
-                annually: '0'
+                yearly: '0'
             },
             description: [
                 '10 users included',
@@ -34,7 +34,7 @@ const priceConfig = {
             currency: "$",
             price: {
                 monthly: '15',
-                annually: '10'
+                yearly: '10'
             },
             description: [
                 '20 users included',
@@ -51,7 +51,7 @@ const priceConfig = {
             currency: "$",
             price: {
                 monthly: '30',
-                annually: '20'
+                yearly: '20'
             },
             description: [
                 '50 users included',

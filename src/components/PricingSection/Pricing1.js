@@ -34,7 +34,7 @@ function Pricing1(props) {
 
     const togglePriceOption = () => {
         if (priceOption === 'monthly') {
-            setPriceOption('annually')
+            setPriceOption('yearly')
         }
         else {
             setPriceOption('monthly')
@@ -64,9 +64,9 @@ function Pricing1(props) {
             {/* End hero unit */}
             <Container maxWidth="lg" component="main" sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                 <Box>
-                    <Typography variant="subtitle1" component="span">{priceConfig.option.monthly.label}</Typography>
+                    <Typography variant="h5" component="span" color={(priceOption === 'monthly') ? 'text.primary' : 'text.disabled'}>{priceConfig.option.monthly.label}</Typography>
                     &nbsp; <PriceOption name="checkbox" color="secondary" checked={priceOption !== 'monthly'} onChange={togglePriceOption} /> &nbsp;
-                    <Typography variant="subtitle1" component="span">{priceConfig.option.annually.label}</Typography>
+                    <Typography variant="h5" component="span" color={(priceOption === 'yearly') ? 'text.primary' : 'text.disabled'}>{priceConfig.option.yearly.label}</Typography>
                 </Box>
                 <Box display='flex' justifyContent='center' flexWrap='wrap' alignItems='center'>
                     {priceConfig.plans.map((plan) => (
