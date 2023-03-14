@@ -9,11 +9,30 @@ import CheckIcon from '@mui/icons-material/Check';
 
 const PriceOption = styled(Switch)(({ theme }) => ({
     '& .MuiSwitch-track': {
+        backgroundColor: theme.palette.secondary.main,
+        borderRadius: '25px',
+        opacity: 1
+    },
+    '& .Mui-checked+.MuiSwitch-track': {
+        opacity: 1,
         backgroundColor: theme.palette.secondary.main
     },
     '& .MuiSwitch-thumb': {
-        color: theme.palette.secondary.main
-    }
+        color: theme.palette.primary.contrastText,
+        width: '18px',
+        height: '18px'
+    },
+    '& .MuiSwitch-switchBase': {
+        top: '6px',
+        left: '6px'
+    },
+    '& .MuiSwitch-switchBase.Mui-checked': {
+        top: '6px',
+        left: '8px',
+        color: theme.palette.primary.contrastText,
+    },
+    width: '70px',
+    height: '48px',
 }))
 
 const PlanStandout = styled('div')(({ theme }) => ({
@@ -65,7 +84,7 @@ function Pricing1(props) {
             <Container maxWidth="lg" component="main" sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                 <Box>
                     <Typography variant="h5" component="span" color={(priceOption === 'monthly') ? 'text.primary' : 'text.disabled'}>{priceConfig.option.monthly.label}</Typography>
-                    &nbsp; <PriceOption name="checkbox" color="secondary" checked={priceOption !== 'monthly'} onChange={togglePriceOption} /> &nbsp;
+                    &nbsp; <PriceOption name="checkbox"  checked={priceOption !== 'monthly'} onChange={togglePriceOption} /> &nbsp;
                     <Typography variant="h5" component="span" color={(priceOption === 'yearly') ? 'text.primary' : 'text.disabled'}>{priceConfig.option.yearly.label}</Typography>
                 </Box>
                 <Box display='flex' justifyContent='center' flexWrap='wrap' alignItems='center'>
