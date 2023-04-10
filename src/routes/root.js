@@ -47,7 +47,11 @@ function Root(props) {
 					<Link to='/sample1'>
 						Sample Page 1
 					</Link>
-					
+				</li>
+				<li>
+					<Link to='/fullpagesample'>
+						FullPage.js Sample Page
+					</Link>
 				</li>
 			</ul>	
 			<ThemeToggle />
