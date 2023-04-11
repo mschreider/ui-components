@@ -1,25 +1,44 @@
-import React from 'react'
-import fullpage from 'fullpage.js'
+import React, {useEffect} from 'react'
+import ReactFullpage from '@fullpage/react-fullpage'; // will return static version on server and "live" version on client
+
+class MySection extends React.Component {
+    render() {
+      return (
+        <div className="section">
+          <h3>{this.props.content}</h3>
+        </div>
+      );
+    }
+}
 
 function FullPageJsSample() {
-    new fullpage('#fullpage', {
-        licenseKey: 'ETULK-NL357-IBJ76-XHLAI-DVWCK',
-        sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff']
-      });
-  
-    
+
+    const anchors = ["firstPage", "secondPage", "thirdPage"];
+
     return (
-        <div id="fullpage">
-      <div class="section active" id="section0"><h1>fullPage.js</h1></div>
-      <div class="section" id="section1">
-          <div class="slide "><h1>Simple Demo</h1></div>
-          <div class="slide active"><h1>Only text</h1></div>
-          <div class="slide"><h1>And text</h1></div>
-          <div class="slide"><h1>And more text</h1></div>
-      </div>
-      <div class="section" id="section2"><h1>No wraps, no extra markup</h1></div>
-      <div class="section" id="section3"><h1>Just the simplest demo ever</h1></div>
-    </div>
+
+        <ReactFullpage
+        licenseKey = {'ETULK-NL357-IBJ76-XHLAI-DVWCK'}
+    anchors={anchors}
+    navigation
+    navigationTooltips={anchors}
+    sectionsColor={["#282c34", "#ff5f45", "#0798ec"]}
+    onLeave={(origin, destination, direction) => {
+      console.log("onLeave event", { origin, destination, direction });
+    }}
+    render={({ state, fullpageApi }) => {
+      console.log("render prop change", state, fullpageApi); // eslint-disable-line no-console
+
+      return (
+        <ReactFullpage.Wrapper>
+          <MySection content={"Slide down!"} />
+          <MySection content={"Keep going!"} />
+          <MySection content={"Slide up!"} />
+        </ReactFullpage.Wrapper>
+      );
+    }}
+  />
+
     )
 }
 
