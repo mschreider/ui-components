@@ -18,26 +18,26 @@ function FullPageJsSample() {
     return (
 
         <ReactFullpage
-        licenseKey = {'ETULK-NL357-IBJ76-XHLAI-DVWCK'}
-    anchors={anchors}
-    navigation
-    navigationTooltips={anchors}
-    sectionsColor={["#282c34", "#ff5f45", "#0798ec"]}
-    onLeave={(origin, destination, direction) => {
-      console.log("onLeave event", { origin, destination, direction });
-    }}
-    render={({ state, fullpageApi }) => {
-      console.log("render prop change", state, fullpageApi); // eslint-disable-line no-console
+			licenseKey = {'ETULK-NL357-IBJ76-XHLAI-DVWCK'}
+			anchors={anchors}
+			navigation
+			navigationTooltips={anchors}
+			sectionsColor={["#282c34", "#ff5f45", "#0798ec"]}
+			onLeave={(origin, destination, direction) => {
+				console.log("onLeave event", { origin, destination, direction });
+			}}
+			render={({ state, fullpageApi }) => {
+				console.log("render prop change", state, fullpageApi); // eslint-disable-line no-console
 
-      return (
-        <ReactFullpage.Wrapper>
-          <MySection content={"Slide down!"} />
-          <MySection content={"Keep going!"} />
-          <MySection content={"Slide up!"} />
-        </ReactFullpage.Wrapper>
-      );
-    }}
-  />
+				return (
+					<ReactFullpage.Wrapper>
+					<MySection content={"Slide down!"} />
+					<MySection content={"Keep going!"} />
+					<MySection content={"Slide up!"} />
+					</ReactFullpage.Wrapper>
+				);
+			}}
+  		/>
 
     )
 }
